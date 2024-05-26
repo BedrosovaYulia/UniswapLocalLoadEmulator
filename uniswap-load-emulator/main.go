@@ -110,7 +110,7 @@ func swapExactETHForTokens(client *ethclient.Client, auth *bind.TransactOpts, pa
 
 	// Устанавливаем путь свопа (ETH -> USDT)
 	path := []common.Address{
-		common.HexToAddress("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"), // ETH
+		common.HexToAddress("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"), // ETH
 		tokenAddress,
 	}
 
@@ -128,7 +128,7 @@ func swapExactETHForTokens(client *ethclient.Client, auth *bind.TransactOpts, pa
 	gasPrice := big.NewInt(16000000000) // 8 Gwei
 
 	// Захардкодим лимит газа (gas limit)
-	gasLimit := uint64(60000)
+	gasLimit := uint64(700000)
 
 	// Создаем данные для вызова функции swapExactETHForTokens
 	input, err := parsedABI.Pack("swapExactETHForTokens", amountOutMin, path, to, deadline)

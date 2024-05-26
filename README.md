@@ -1,6 +1,6 @@
 # Uniswap Load Emulator
 
-This project is a load emulator for various versions of Uniswap exchanges on a local Ethereum fork. It generates random transactions to test the performance and resilience of Uniswap.
+This project is a load emulator for various versions of Uniswap exchanges on a local Ethereum fork. It generates random transactions for testing other local applications.
 
 ## Requirements
 
