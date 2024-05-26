@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  uniswap-load-emulator:
+    build:
+      context: ./uniswap-load-emulator
+      dockerfile: Dockerfile
+    env_file:
+     - .env
+    container_name: uniswap-load-emulator
+    volumes:
+     - ./.env:/app/.env # Монтируем файл .env в контейнер

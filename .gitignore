@@ -1,0 +1,45 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Output of the Go compiler
+*.o
+*.a
+*.out
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+
+# Directories for Go modules
+vendor/
+bin/
+pkg/
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.iml
+
+# Environment variables file
+.env
+
+# Docker specific files
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Node modules (if you have any Node.js dependencies)
+node_modules/
+
+# MacOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
