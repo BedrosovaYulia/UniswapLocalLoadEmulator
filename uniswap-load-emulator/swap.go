@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math/big"
 	"strings"
 	"time"
@@ -111,4 +113,27 @@ func SwapExactETHForTokens(client *ethclient.Client, auth *bind.TransactOpts, co
 
 	fmt.Printf("Transaction sent: %s\n", signedTx.Hash().Hex())
 	return nil
+}
+
+func GetETHBalance(client *ethclient.Client, address common.Address) (*big.Int, error) {
+	balance, err := client.BalanceAt(context.Background(), address, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get ETH balance: %v", err)
+	}
+	return balance, nil
+}
+
+func LoadABI(filePath string) (abi.ABI, error) {
+	var contractABI abi.ABI
+	abiFile, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return contractABI, fmt.Errorf("failed to read ABI file: %v", err)
+	}
+
+	err = json.Unmarshal(abiFile, &contractABI)
+	if err != nil {
+		return contractABI, fmt.Errorf("failed to unmarshal ABI: %v", err)
+	}
+
+	return contractABI, nil
 }

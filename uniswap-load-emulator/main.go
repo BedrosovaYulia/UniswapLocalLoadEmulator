@@ -24,13 +24,30 @@ func main() {
 		amount := rand.Intn(10) + 1
 		slippage := rand.Intn(46) + 5
 
-		fmt.Printf("Buying %d USDT with ETH with %d%% slippage\n", amount, slippage)
+		// Получаем баланс пользователя в ETH до свопа
+		ethBalanceBefore, err := GetETHBalance(client, auth.From)
+		if err != nil {
+			log.Printf("Failed to get ETH balance: %v", err)
+			continue
+		}
+
+		fmt.Printf("Balance before swap: ETH = %s\n", ethBalanceBefore.String())
 
 		// Выполняем своп
-		err := SwapExactETHForTokens(client, auth, config, amount, slippage)
+		err = SwapExactETHForTokens(client, auth, config, amount, slippage)
 		if err != nil {
 			log.Printf("Failed to perform swap: %v", err)
+			continue
 		}
+
+		// Получаем баланс пользователя в ETH после свопа
+		ethBalanceAfter, err := GetETHBalance(client, auth.From)
+		if err != nil {
+			log.Printf("Failed to get ETH balance: %v", err)
+			continue
+		}
+
+		fmt.Printf("Balance after swap: ETH = %s\n", ethBalanceAfter.String())
 
 		time.Sleep(5 * time.Second)
 	}
